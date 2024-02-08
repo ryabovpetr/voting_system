@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Objects;
 
 public class RestaurantServlet extends HttpServlet {
@@ -52,56 +53,52 @@ public class RestaurantServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
-        String action = req.getParameter("action");
         String id = req.getParameter("id");
         Restaurant restaurant = new Restaurant();
         if (!id.isEmpty()) {
             restaurant.setId(Integer.parseInt(id));
             restaurant.setCountVotes(Integer.parseInt(req.getParameter("countVotes")));
         }
+        if (!restaurant.isNew()) {
+            restaurant = repository.get(restaurant.getId());
+            String[] dishNames = req.getParameterValues("editDishName");
+            String[] dishPrices = req.getParameterValues("editDishPrice");
+            String[] dishKeys = req.getParameterValues("editDishKey");
 
-        if (!restaurant.isNew()) restaurant = repository.get(restaurant.getId());
-        if (action != null) {
-            if (action.startsWith("editDish:")) {
-                int index = Integer.parseInt(action.substring(9));
-                String dishName = req.getParameter("editDishKey" + index);
-                String newDishName = req.getParameter("editDishName" + index);
-                int newDishPrice = Integer.parseInt(req.getParameter("editDishPrice" + index));
-                restaurant.getLunchMenu().remove(dishName);
-                restaurant.getLunchMenu().put(newDishName, newDishPrice);
-            } else if (action.startsWith("deleteDish:")) {
-                int index = Integer.parseInt(action.substring(11));
-                String dishName = req.getParameter("editDishKey" + index);
-                restaurant.getLunchMenu().remove(dishName);
-            } else if (action.equals("addDish")) {
-                String newDishName = req.getParameter("newDishName");
-                int newDishPrice = Integer.parseInt(req.getParameter("newDishPrice"));
-                restaurant.getLunchMenu().put(newDishName, newDishPrice);
+            Map<String, Integer> dishMenu = restaurant.getLunchMenu();
+
+            for (int i = 0; i < dishNames.length; i++) {
+                String dishName = dishNames[i];
+                String stringDishPrice = dishPrices[i];
+                String oldDishKey = dishKeys[i];
+
+                dishMenu.remove(oldDishKey);
+                if (!stringDishPrice.isEmpty() && !dishName.isEmpty())
+                    dishMenu.put(dishName, Integer.parseInt(stringDishPrice));
             }
-        } else {
-            String newDishName = req.getParameter("newDishName");
+        }
+
+        for (int i = 1; i < 4; i++) {
+            String newDishName = req.getParameter("newDishName" + i);
             if (!newDishName.isEmpty()) {
-            int newDishPrice = Integer.parseInt(req.getParameter("newDishPrice"));
-            restaurant.getLunchMenu().put(newDishName, newDishPrice);
+                String stringNewPrice = req.getParameter("newDishPrice" + i);
+                if (!stringNewPrice.isEmpty()) {
+                    int newDishPrice = Integer.parseInt(stringNewPrice);
+                    restaurant.getLunchMenu().put(newDishName, newDishPrice);
+                }
             }
         }
 
         String name = req.getParameter("name");
-        if (!name.isEmpty()) restaurant.setName(name);
+        if (!name.isEmpty())
+            restaurant.setName(name);
 
         log.info(restaurant.isNew() ? "Create {}" : "Update {}", restaurant);
         repository.save(restaurant);
         resp.sendRedirect("restaurants");
-
-//        Map<String, Integer> lunchMenu = new HashMap<>();
-//        Map<String, String[]> map = new HashMap<>(req.getParameterMap());
-//        String name = map.remove("name")[0];
-//        String id = map.remove("id")[0];
-//        String countVotes = map.remove("countVotes")[0];
-//        map.forEach((s, strings) -> lunchMenu.put(s, Integer.parseInt(strings[0])));
     }
 
-    private int getId (HttpServletRequest req) {
+    private int getId(HttpServletRequest req) {
         String id = Objects.requireNonNull((req.getParameter("id")));
         return Integer.parseInt(id);
     }

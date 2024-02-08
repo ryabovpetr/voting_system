@@ -37,28 +37,56 @@
         </dl>
         <dl>
             <dt>Lunch Menu:</dt><br>
-            <c:set var="status" value="${-1}" scope="page"/>
-            <c:forEach var="entryDish" items="${restaurant.lunchMenu}" varStatus="status">
+            <c:forEach var="entryDish" items="${restaurant.lunchMenu}">
                 <label for="editDishName">Блюдо</label>
-                <input type="text" id="editDishName" name="editDishName${status.index}" value="${entryDish.key}">
+                <input type="text" id="editDishName" name="editDishName" value="${entryDish.key}">
                 <label for="editDishPrice">Ценой</label>
-                <input type="number" id="editDishPrice" name="editDishPrice${status.index}" value="${entryDish.value}">
+                <input type="number" id="editDishPrice" name="editDishPrice" value="${entryDish.value}">
                 <label for="editDishPrice">руб.</label>
-                <input type="hidden" name="editDishKey${status.index}" value="${entryDish.key}">
-
-                <button type="submit" name="action" value="editDish:${status.index}">Применить изменения</button>
-                <button type="submit" name="action" value="deleteDish:${status.index}">Удалить</button><br>
+                <input type="hidden" name="editDishKey" value="${entryDish.key}"><br>
             </c:forEach>
 
-            <label for="newDishName">Новое блюдо:</label>
-            <input type="text" id="newDishName" name="newDishName">
-            <label for="newDishPrice">Цена нового блюда:</label>
-            <input type="number" id="newDishPrice" name="newDishPrice">
-            <button type="submit" name="action" value="addDish">Добавить блюдо</button>
+            <div id="newDishesContainer">
+                <div id="newDish1" style="display: none;">
+                <label for="newDishName1">Новое блюдо:</label>
+                <input type="text" id="newDishName1" name="newDishName1">
+                <label for="newDishPrice1">Цена нового блюда:</label>
+                <input type="number" id="newDishPrice1"  name="newDishPrice1"><br>
+                </div>
+
+                <div id="newDish2" style="display: none;">
+                    <label for="newDishName2">Новое блюдо:</label>
+                    <input type="text" id="newDishName2" name="newDishName2">
+                    <label for="newDishPrice2">Цена нового блюда:</label>
+                    <input type="number" id="newDishPrice2"  name="newDishPrice2"><br>
+                </div>
+
+                <div id="newDish3" style="display: none;">
+                    <label for="newDishName3">Новое блюдо:</label>
+                    <input type="text" id="newDishName3" name="newDishName3">
+                    <label for="newDishPrice3">Цена нового блюда:</label>
+                    <input type="number" id="newDishPrice3"  name="newDishPrice3"><br>
+                </div>
+            </div>
+
+            <button type="button" onclick="showNewDishFields()">Добавить блюдо</button>
+
         </dl>
         <button type="submit">Save</button>
         <button onclick="window.history.back()" type="button">Cancel</button>
     </form>
+
+
 </section>
+
 </body>
+<script>
+    let newDishCount = 0;
+    function showNewDishFields() {
+        if (newDishCount < 3) {
+            newDishCount++;
+            document.querySelector('[name=newDishName' + newDishCount + ']').closest('div').style.display = 'block';
+        }
+    }
+</script>
 </html>
