@@ -28,7 +28,7 @@
                 <td>${restaurant.name}</td>
                 <td>
                     <c:forEach items="${restaurant.lunchMenu}" var="dish">
-                        <li>${dish.key} ${dish.value} руб.</li>
+                        <li>${dish.key} - ${dish.value} руб.</li>
                     </c:forEach>
                 </td>
                 <td>${restaurant.countVotes}</td>

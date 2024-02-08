@@ -1,12 +1,13 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Restaurant {
 
     private Integer id;
-    private final String name;
-    private final HashMap<String, Integer> lunchMenu;
+    private String name;
+    private Map<String, Integer> lunchMenu;
     private int countVotes;
 
     public Restaurant(String name) {
@@ -16,11 +17,15 @@ public class Restaurant {
         this.countVotes = 0;
     }
 
-    public Restaurant(Integer id, String name, HashMap<String, Integer> lunchMenu, int countVotes) {
+    public Restaurant(Integer id, String name, Map<String, Integer> lunchMenu, int countVotes) {
         this.id = id;
         this.name = name;
         this.lunchMenu = lunchMenu;
         this.countVotes = countVotes;
+    }
+
+    public Restaurant() {
+        this.lunchMenu = new HashMap<>();
     }
 
     public Integer getId() {
@@ -39,8 +44,16 @@ public class Restaurant {
         return name;
     }
 
-    public HashMap<String, Integer> getLunchMenu() {
+    public Map<String, Integer> getLunchMenu() {
         return lunchMenu;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLunchMenu(Map<String, Integer> lunchMenu) {
+        this.lunchMenu = lunchMenu;
     }
 
     public int getCountVotes() {

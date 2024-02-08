@@ -36,13 +36,25 @@
             <dd><input type="text" value="${restaurant.name}" size=50 name="name" required></dd>
         </dl>
         <dl>
-            <dt>Lunch Menu:</dt>
-            <c:forEach items="${restaurant.lunchMenu}" var="dish">
-                <dd>
-                    <input type="text" value="${dish.key}"></dd>
-                <dd>
-                    <input type="number" value="${dish.value}"></dd>
+            <dt>Lunch Menu:</dt><br>
+            <c:set var="status" value="${-1}" scope="page"/>
+            <c:forEach var="entryDish" items="${restaurant.lunchMenu}" varStatus="status">
+                <label for="editDishName">Блюдо</label>
+                <input type="text" id="editDishName" name="editDishName${status.index}" value="${entryDish.key}">
+                <label for="editDishPrice">Ценой</label>
+                <input type="number" id="editDishPrice" name="editDishPrice${status.index}" value="${entryDish.value}">
+                <label for="editDishPrice">руб.</label>
+                <input type="hidden" name="editDishKey${status.index}" value="${entryDish.key}">
+
+                <button type="submit" name="action" value="editDish:${status.index}">Применить изменения</button>
+                <button type="submit" name="action" value="deleteDish:${status.index}">Удалить</button><br>
             </c:forEach>
+
+            <label for="newDishName">Новое блюдо:</label>
+            <input type="text" id="newDishName" name="newDishName">
+            <label for="newDishPrice">Цена нового блюда:</label>
+            <input type="number" id="newDishPrice" name="newDishPrice">
+            <button type="submit" name="action" value="addDish">Добавить блюдо</button>
         </dl>
         <button type="submit">Save</button>
         <button onclick="window.history.back()" type="button">Cancel</button>
