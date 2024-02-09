@@ -3,41 +3,21 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Restaurant {
-
-    private Integer id;
+public class Restaurant extends AbstractBaseEntity {
     private String name;
     private Map<String, Integer> lunchMenu;
     private int countVotes;
 
-    public Restaurant(String name) {
-        this.id = null;
-        this.name = name;
-        this.lunchMenu = new HashMap<>();
-        this.countVotes = 0;
-    }
-
     public Restaurant(Integer id, String name, Map<String, Integer> lunchMenu, int countVotes) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.lunchMenu = lunchMenu;
         this.countVotes = countVotes;
     }
 
     public Restaurant() {
+        super(null);
         this.lunchMenu = new HashMap<>();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public boolean isNew() {
-        return id == null;
     }
 
     public String getName() {

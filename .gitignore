@@ -22,3 +22,12 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+/target/voting_system/index.html
+/target/classes/logback.xml
+/target/voting_system/WEB-INF/classes/logback.xml
+/target/voting_system/META-INF/MANIFEST.MF
+/.idea/inspectionProfiles/Project_Default.xml
+/target/voting_system/restaurantForm.jsp
+/target/voting_system/restaurants.jsp
+/target/voting_system/users.jsp
+/target/voting_system/WEB-INF/web.xml

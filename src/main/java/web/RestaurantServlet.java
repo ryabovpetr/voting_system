@@ -38,7 +38,7 @@ public class RestaurantServlet extends HttpServlet {
                 break;
             case "create":
             case "update":
-                Restaurant restaurant = action.equals("create") ? new Restaurant("") : repository.get(getId(req));
+                Restaurant restaurant = action.equals("create") ? new Restaurant() : repository.get(getId(req));
                 req.setAttribute("restaurant", restaurant);
                 req.getRequestDispatcher("/restaurantForm.jsp").forward(req, resp);
                 break;
@@ -67,14 +67,16 @@ public class RestaurantServlet extends HttpServlet {
 
             Map<String, Integer> dishMenu = restaurant.getLunchMenu();
 
-            for (int i = 0; i < dishNames.length; i++) {
-                String dishName = dishNames[i];
-                String stringDishPrice = dishPrices[i];
-                String oldDishKey = dishKeys[i];
+            if (!dishMenu.isEmpty()) {
+                for (int i = 0; i < dishNames.length; i++) {
+                    String dishName = dishNames[i];
+                    String stringDishPrice = dishPrices[i];
+                    String oldDishKey = dishKeys[i];
 
-                dishMenu.remove(oldDishKey);
-                if (!stringDishPrice.isEmpty() && !dishName.isEmpty())
-                    dishMenu.put(dishName, Integer.parseInt(stringDishPrice));
+                    dishMenu.remove(oldDishKey);
+                    if (!stringDishPrice.isEmpty() && !dishName.isEmpty())
+                        dishMenu.put(dishName, Integer.parseInt(stringDishPrice));
+                }
             }
         }
 

@@ -3,8 +3,8 @@ package repository;
 import model.Restaurant;
 import utils.Util;
 
-import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,7 +20,7 @@ public class RestaurantInMemoryRepository implements RestaurantRepository {
 
     @Override
     public Restaurant save(Restaurant restaurant) {
-        if (restaurant.isNew()){
+        if (restaurant.isNew()) {
             restaurant.setId(counter.incrementAndGet());
             return repository.put(restaurant.getId(), restaurant);
         }
@@ -39,7 +39,12 @@ public class RestaurantInMemoryRepository implements RestaurantRepository {
     }
 
     @Override
-    public Collection<Restaurant> getAll() {
+    public Restaurant getByName(String name) {
+        return repository.values().stream().filter(r -> r.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Override
+    public List<Restaurant> getAll() {
         return repository.values().stream()
                 .sorted(Comparator.comparing(Restaurant::getCountVotes).reversed())
                 .collect(Collectors.toList());

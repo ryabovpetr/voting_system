@@ -2,7 +2,8 @@ package repository;
 
 import model.Restaurant;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 public interface RestaurantRepository {
     // null if not found, when updated
@@ -14,5 +15,7 @@ public interface RestaurantRepository {
     // null if not found
     Restaurant get(int id);
 
-    Collection<Restaurant> getAll();
+    Restaurant getByName(String name);
+
+    List<Restaurant> getAll();
 }
