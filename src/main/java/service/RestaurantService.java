@@ -10,6 +10,10 @@ import static utils.ValidationUtil.*;
 public class RestaurantService {
     private RestaurantRepository repository;
 
+    public RestaurantService(RestaurantRepository repository) {
+        this.repository = repository;
+    }
+
     public Restaurant create(Restaurant restaurant) {
         return repository.save(restaurant);
     }
