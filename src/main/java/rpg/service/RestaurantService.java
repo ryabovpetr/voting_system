@@ -1,11 +1,11 @@
-package service;
+package rpg.service;
 
-import model.Restaurant;
-import repository.RestaurantRepository;
+import rpg.model.Restaurant;
+import rpg.repository.RestaurantRepository;
 
 import java.util.List;
 
-import static utils.ValidationUtil.*;
+import static rpg.utils.ValidationUtil.*;
 
 public class RestaurantService {
     private RestaurantRepository repository;

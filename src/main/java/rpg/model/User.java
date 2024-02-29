@@ -1,4 +1,4 @@
-package model;
+package rpg.model;
 
 import java.time.LocalDateTime;
 

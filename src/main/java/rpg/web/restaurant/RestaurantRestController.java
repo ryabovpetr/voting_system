@@ -1,10 +1,10 @@
-package web.restaurant;
+package rpg.web.restaurant;
 
-import model.Restaurant;
+import rpg.model.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.RestaurantService;
-import utils.ValidationUtil;
+import rpg.service.RestaurantService;
+import rpg.utils.ValidationUtil;
 
 import java.util.List;
 

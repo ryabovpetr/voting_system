@@ -1,10 +1,10 @@
-package web;
+package rpg.web;
 
-import model.Restaurant;
+import rpg.model.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import repository.RestaurantInMemoryRepository;
-import repository.RestaurantRepository;
+import rpg.repository.RestaurantInMemoryRepository;
+import rpg.repository.RestaurantRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

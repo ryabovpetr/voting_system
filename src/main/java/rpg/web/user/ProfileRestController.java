@@ -1,8 +1,8 @@
-package web.user;
+package rpg.web.user;
 
-import model.User;
+import rpg.model.User;
 
-import static utils.SecurityUtil.authUserId;
+import static rpg.utils.SecurityUtil.authUserId;
 
 public class ProfileRestController extends AbstractUserController {
     @Override

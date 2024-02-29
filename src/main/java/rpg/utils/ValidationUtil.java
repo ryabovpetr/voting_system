@@ -1,7 +1,7 @@
-package utils;
+package rpg.utils;
 
-import model.AbstractBaseEntity;
-import utils.exception.NotFoundException;
+import rpg.model.AbstractBaseEntity;
+import rpg.utils.exception.NotFoundException;
 
 public class ValidationUtil {
     public static <T> T checkNotFoundWithId(T object, int id) {

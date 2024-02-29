@@ -1,6 +1,6 @@
-package utils;
+package rpg.utils;
 
-import model.Restaurant;
+import rpg.model.Restaurant;
 
 import java.util.ArrayList;
 import java.util.Comparator;

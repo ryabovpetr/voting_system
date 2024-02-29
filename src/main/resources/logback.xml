@@ -20,7 +20,7 @@
         </encoder>
     </appender>
 
-    <logger name="" level="debug"/>
+    <logger name="rpg" level="debug"/>
 
     <root level="info">
         <appender-ref ref="file"/>

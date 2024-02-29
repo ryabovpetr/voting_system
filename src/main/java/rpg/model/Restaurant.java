@@ -1,4 +1,4 @@
-package model;
+package rpg.model;
 
 import java.util.HashMap;
 import java.util.Map;

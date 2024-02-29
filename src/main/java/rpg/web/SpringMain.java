@@ -1,10 +1,10 @@
-package web;
+package rpg.web;
 
-import model.Restaurant;
+import rpg.model.Restaurant;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import repository.RestaurantRepository;
-import service.RestaurantService;
+import rpg.repository.RestaurantRepository;
+import rpg.service.RestaurantService;
 
 import java.util.Arrays;
 

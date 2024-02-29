@@ -1,11 +1,11 @@
-package service;
+package rpg.service;
 
-import model.User;
-import repository.UserRepository;
+import rpg.model.User;
+import rpg.repository.UserRepository;
 
 import java.util.List;
 
-import static utils.ValidationUtil.*;
+import static rpg.utils.ValidationUtil.*;
 
 public class UserService {
     private UserRepository repository;

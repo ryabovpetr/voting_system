@@ -1,9 +1,8 @@
-package repository;
+package rpg.repository;
 
-import model.Restaurant;
+import rpg.model.Restaurant;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface RestaurantRepository {
     // null if not found, when updated

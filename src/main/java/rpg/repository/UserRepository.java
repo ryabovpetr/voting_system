@@ -1,6 +1,6 @@
-package repository;
+package rpg.repository;
 
-import model.User;
+import rpg.model.User;
 
 import java.util.List;
 

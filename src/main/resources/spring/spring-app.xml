@@ -2,9 +2,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="repository.RestaurantInMemoryRepository" id="restaurantInMemoryRepository"/>
+    <bean class="rpg.repository.RestaurantInMemoryRepository" id="restaurantInMemoryRepository"/>
 
-    <bean class="service.RestaurantService">
+    <bean class="rpg.service.RestaurantService">
         <constructor-arg name="repository" ref="restaurantInMemoryRepository"/>
     </bean>
 </beans>

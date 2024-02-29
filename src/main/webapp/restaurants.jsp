@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <c:forEach items="${requestScope.restaurants}" var="restaurant">
-            <jsp:useBean id="restaurant" type="model.Restaurant"/>
+            <jsp:useBean id="restaurant" type="rpg.model.Restaurant"/>
             <tr>
                 <td>${restaurant.name}</td>
                 <td>

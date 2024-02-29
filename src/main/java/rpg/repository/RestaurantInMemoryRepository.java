@@ -1,7 +1,9 @@
-package repository;
+package rpg.repository;
 
-import model.Restaurant;
-import utils.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import rpg.model.Restaurant;
+import rpg.utils.Util;
 
 import java.util.Comparator;
 import java.util.List;
@@ -18,8 +20,11 @@ public class RestaurantInMemoryRepository implements RestaurantRepository {
         Util.getRests().forEach(this::save);
     }
 
+    private static final Logger log = LoggerFactory.getLogger(RestaurantInMemoryRepository.class);
+
     @Override
     public Restaurant save(Restaurant restaurant) {
+        log.info("save {}", restaurant);
         if (restaurant.isNew()) {
             restaurant.setId(counter.incrementAndGet());
             return repository.put(restaurant.getId(), restaurant);
@@ -30,21 +35,25 @@ public class RestaurantInMemoryRepository implements RestaurantRepository {
 
     @Override
     public boolean delete(int id) {
+        log.info("delete id={}", id);
         return repository.remove(id) != null;
     }
 
     @Override
     public Restaurant get(int id) {
+        log.info("get id={}", id);
         return repository.get(id);
     }
 
     @Override
     public Restaurant getByName(String name) {
+        log.info("get by name={}", name);
         return repository.values().stream().filter(r -> r.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Override
     public List<Restaurant> getAll() {
+        log.info("getAll");
         return repository.values().stream()
                 .sorted(Comparator.comparing(Restaurant::getCountVotes).reversed())
                 .collect(Collectors.toList());

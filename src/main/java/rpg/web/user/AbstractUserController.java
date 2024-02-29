@@ -1,10 +1,10 @@
-package web.user;
+package rpg.web.user;
 
-import model.User;
+import rpg.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.UserService;
-import utils.ValidationUtil;
+import rpg.service.UserService;
+import rpg.utils.ValidationUtil;
 
 import java.util.List;
 

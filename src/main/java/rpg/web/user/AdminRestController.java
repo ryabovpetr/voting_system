@@ -1,6 +1,6 @@
-package web.user;
+package rpg.web.user;
 
-import model.User;
+import rpg.model.User;
 
 import java.util.List;
 

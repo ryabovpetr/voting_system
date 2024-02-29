@@ -27,7 +27,7 @@
     <h3><a href="index.html">Home</a></h3>
     <hr>
     <h2>${param.action == 'create' ? 'Create restaurant' : 'Edit restaurant'}</h2>
-    <jsp:useBean id="restaurant" type="model.Restaurant" scope="request"/>
+    <jsp:useBean id="restaurant" type="rpg.model.Restaurant" scope="request"/>
     <form method="post" action="restaurants">
         <input type="hidden" name="id" value="${restaurant.id}">
         <input type="hidden" name="countVotes" value="${restaurant.countVotes}">
