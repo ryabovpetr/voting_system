@@ -1,6 +1,8 @@
 package rpg.utils;
 
 import rpg.model.Restaurant;
+import rpg.model.Role;
+import rpg.model.User;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,6 +11,9 @@ import java.util.stream.Collectors;
 
 public class Util {
     private static final List<Restaurant> restaurants = new ArrayList<>();
+
+    private static final List<User> users = new ArrayList<>();
+
     static {
         Restaurant tehnikum = new Restaurant();
         tehnikum.setName("Техникум");
@@ -33,19 +38,18 @@ public class Util {
         domKulturi.getLunchMenu().put("Сыворотка", 80);
         domKulturi.setCountVotes(5);
         restaurants.add(domKulturi);
-    }
-    public static void main() {
-        System.out.println(getSortedRests());
 
+        User user = new User("user@gmail.com", "user", Role.USER);
+        User admin = new User("admin@gmail.com", "admin", Role.ADMIN);
+        users.add(user);
+        users.add(admin);
     }
 
     public static List<Restaurant> getRests() {
         return restaurants;
     }
 
-    public static List<Restaurant> getSortedRests() {
-        return restaurants.stream()
-                .sorted(Comparator.comparing(Restaurant::getCountVotes).reversed())
-                .collect(Collectors.toList());
+    public static List<User> getUsers() {
+        return users;
     }
 }

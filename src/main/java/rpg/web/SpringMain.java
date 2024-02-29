@@ -3,24 +3,25 @@ package rpg.web;
 import rpg.model.Restaurant;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import rpg.model.Role;
+import rpg.model.User;
 import rpg.repository.RestaurantRepository;
 import rpg.service.RestaurantService;
+import rpg.web.restaurant.RestaurantRestController;
+import rpg.web.user.AdminRestController;
 
 import java.util.Arrays;
 
 public class SpringMain {
     public static void main(String[] args) {
-        ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
-        System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
+        try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml")) {
+            System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
 
-//        RestaurantRepository restaurantRepository = (RestaurantRepository) appCtx.getBean("restaurantInMemoryRepository");
-        RestaurantRepository restaurantRepository = appCtx.getBean(RestaurantRepository.class);
+            RestaurantRestController restaurantRestController = appCtx.getBean(RestaurantRestController.class);
+            restaurantRestController.create(new Restaurant(null, "Волга", null, 100));
 
-
-        RestaurantService restaurantService = appCtx.getBean(RestaurantService.class);
-        restaurantService.create(new Restaurant(null, "Волга", null, 100));
-
-        restaurantRepository.getAll();
-        appCtx.close();
+            AdminRestController adminRestController = appCtx.getBean(AdminRestController.class);
+            adminRestController.create(new User("ryabovpetr@gmail.com", "password", Role.USER));
+        }
     }
 }

@@ -1,5 +1,6 @@
 package rpg.web.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import rpg.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import rpg.utils.ValidationUtil;
 import java.util.List;
 
 public class AbstractUserController {
+    @Autowired
     private UserService service;
     private final static Logger log = LoggerFactory.getLogger(AbstractUserController.class);
 

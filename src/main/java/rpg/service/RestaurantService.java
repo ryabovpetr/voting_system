@@ -1,12 +1,13 @@
 package rpg.service;
 
+import org.springframework.stereotype.Service;
 import rpg.model.Restaurant;
 import rpg.repository.RestaurantRepository;
 
 import java.util.List;
 
 import static rpg.utils.ValidationUtil.*;
-
+@Service
 public class RestaurantService {
     private RestaurantRepository repository;
 

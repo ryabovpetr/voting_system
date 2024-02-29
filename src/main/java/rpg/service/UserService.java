@@ -1,12 +1,13 @@
 package rpg.service;
 
+import org.springframework.stereotype.Service;
 import rpg.model.User;
 import rpg.repository.UserRepository;
 
 import java.util.List;
 
 import static rpg.utils.ValidationUtil.*;
-
+@Service
 public class UserService {
     private UserRepository repository;
 

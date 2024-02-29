@@ -2,6 +2,7 @@ package rpg.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 import rpg.model.Restaurant;
 import rpg.utils.Util;
 
@@ -11,16 +12,15 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-
+@Repository
 public class RestaurantInMemoryRepository implements RestaurantRepository {
     private final Map<Integer, Restaurant> repository = new ConcurrentHashMap<>();
     private final AtomicInteger counter = new AtomicInteger(0);
+    private static final Logger log = LoggerFactory.getLogger(RestaurantInMemoryRepository.class);
 
     {
         Util.getRests().forEach(this::save);
     }
-
-    private static final Logger log = LoggerFactory.getLogger(RestaurantInMemoryRepository.class);
 
     @Override
     public Restaurant save(Restaurant restaurant) {

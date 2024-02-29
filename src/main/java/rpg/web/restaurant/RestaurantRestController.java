@@ -1,5 +1,7 @@
 package rpg.web.restaurant;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import rpg.model.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,8 +9,9 @@ import rpg.service.RestaurantService;
 import rpg.utils.ValidationUtil;
 
 import java.util.List;
-
+@Controller
 public class RestaurantRestController {
+    @Autowired
     private RestaurantService service;
     private static final Logger log = LoggerFactory.getLogger(RestaurantRestController.class);
 

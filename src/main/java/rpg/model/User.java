@@ -7,7 +7,13 @@ public class User extends AbstractBaseEntity {
     private String password;
     private boolean alreadyVoted;
     private LocalDateTime dateTimeOfVote;
-    private final Role role;
+    private Role role;
+
+    public User() {
+        super(null);
+        this.alreadyVoted = false;
+        this.dateTimeOfVote = null;
+    }
 
     public User(String email, String password, Role role) {
         super(null);
@@ -16,5 +22,33 @@ public class User extends AbstractBaseEntity {
         this.role = role;
         this.alreadyVoted = false;
         this.dateTimeOfVote = null;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public boolean isAlreadyVoted() {
+        return alreadyVoted;
+    }
+
+    public LocalDateTime getDateTimeOfVote() {
+        return dateTimeOfVote;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
